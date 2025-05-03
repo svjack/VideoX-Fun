@@ -1,3 +1,66 @@
+```bash
+https://github.com/aigc-apps/VideoX-Fun/blob/main/comfyui/README.md
+
+sudo apt-get update && sudo apt-get install cbm ffmpeg git-lfs
+
+python -m pip install comfy-cli
+comfy --here install
+
+cd ComfyUI/custom_nodes
+git clone https://github.com/Chaoses-Ib/ComfyScript.git
+cd ComfyScript
+python -m pip install -e ".[default]"
+
+cd ..
+
+# Git clone the cogvideox_fun itself
+git clone https://github.com/aigc-apps/VideoX-Fun.git
+cd VideoX-Fun/
+python install.py
+
+cd ..
+
+# Git clone the video outout node
+git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git
+cd ComfyUI-VideoHelperSuite
+pip install -r requirements.txt
+pip install onnxruntime
+pip install "httpx[socks]"
+pip uninstall torchaudio torchvision torch -y
+pip install torchaudio torchvision torch
+
+cd ../..
+
+📦 ComfyUI/
+├── 📂 models/
+│   └── 📂 Fun_Models/
+│       ├── 📂 CogVideoX-Fun-V1.1-2b-InP/
+│       ├── 📂 CogVideoX-Fun-V1.1-5b-InP/
+│       ├── 📂 Wan2.1-Fun-V1.1-14B-InP
+│       └── 📂 Wan2.1-Fun-V1.1-1.3B-InP/
+
+mkdir -p models/Fun_Models
+cd models/Fun_Models
+
+git clone https://huggingface.co/alibaba-pai/CogVideoX-Fun-V1.1-2b-InP
+git clone https://huggingface.co/alibaba-pai/CogVideoX-Fun-V1.1-5b-InP
+git clone https://huggingface.co/alibaba-pai/Wan2.1-Fun-V1.1-1.3B-InP
+git clone https://huggingface.co/alibaba-pai/Wan2.1-Fun-V1.1-14B-InP
+
+git clone https://huggingface.co/alibaba-pai/Wan2.1-Fun-V1.1-1.3B-Control
+git clone https://huggingface.co/alibaba-pai/Wan2.1-Fun-V1.1-14B-Control
+
+comfy launch -- --listen 0.0.0.0
+
+https://pai-aigc-photog.oss-cn-hangzhou.aliyuncs.com/wan_fun/asset/v1.1/wan2.1_fun_workflow_v2v_control_ref.json
+
+控制视频长度xfps+1
+6x8+1=49
+生成视频长度
+
+wan2.1_fun_workflow_v2v_control_ref_edit.json
+```
+
 # VideoX-Fun
 
 😊 Welcome!
